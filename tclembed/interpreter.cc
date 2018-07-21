@@ -56,27 +56,28 @@ extern int verilog_error_reading;
 int nignore = 0;
 
 char const *extra_commands[] = {
-    "report_timing",
-    "report_delay_calculation",
     "all_registers",
-    "list_libs",
-    "-from",
-    "-to",
-    "read_verilog",
-    "read_liberty",
-    "quit",
-    "set_design_top",
-    "link_design",
-    "traverse_input",
-    "get_cell",
     "create_clock",
-    "report_clock",
+    "exit",
+    "get_cell",
     "get_fanin",
     "get_fanout",
     "get_pin",
-    "source",
+    "help",
+    "link_design",
+    "list_libs",
+    "report_delay_calculation",
+    "report_timing",
+    "read_verilog",
+    "read_liberty",
+    "report_clock",
     "restart",
-    "exit",
+    "set_design_top",
+    "source",
+    "traverse_input",
+    "quit",
+    "-from",
+    "-to",
     NULL
 };
 
@@ -427,7 +428,7 @@ int command_get_fanout(ClientData clientData, Tcl_Interp *interp, int objc, Tcl_
 int command_report_delay_calculation(ClientData clientData, Tcl_Interp *interp, int objc, Tcl_Obj *const objv[])
 {
     if(objc < 2) {
-        std::cout << "Usage: get_fanout <pin>" << std::endl;
+        std::cout << "Usage: report_delay_calculation <pin>" << std::endl;
         return -1;
     }
     std::string pin_path = std::string(objv[1]->bytes);
@@ -497,6 +498,22 @@ int command_report_clock(ClientData clientData, Tcl_Interp *interp, int objc, Tc
     for(int i=0;i<state->constraints.clocks.size();i++) {
         std::cout << *state->constraints.clocks[i] << std::endl;
     }
+}
+
+int command_help(ClientData clientData, Tcl_Interp *interp, int objc, Tcl_Obj *const objv[])
+{
+    const char *current;
+    int i = 0;
+    std::cout << std::endl;
+    std::cout << "Available commands:" << std::endl;
+    while(current != NULL) {
+        current = extra_commands[i];
+        if (current != NULL) {
+            std::cout << "  " << current << std::endl;
+        }
+        i++;
+    }
+    return 0;
 }
 
 int command_source_tcl(ClientData clientData, Tcl_Interp *interp, int objc, Tcl_Obj *const objv[])
@@ -585,6 +602,7 @@ int tclembed_interpreter(ProgramState *program_state, std::string script_file)
     Tcl_CreateObjCommand(myInterp, "get_pin", (Tcl_ObjCmdProc*)command_get_pin, 0, 0);
     Tcl_CreateObjCommand(myInterp, "report_delay_calculation", (Tcl_ObjCmdProc*)command_report_delay_calculation, 0, 0);
     Tcl_CreateObjCommand(myInterp, "source", (Tcl_ObjCmdProc*)command_source_tcl, 0, 0);
+    Tcl_CreateObjCommand(myInterp, "help", (Tcl_ObjCmdProc*)command_help, 0, 0);
     Tcl_CreateObjCommand(myInterp, "restart", (Tcl_ObjCmdProc*)command_restart, 0, 0);
     Tcl_CreateObjCommand(myInterp, "exit", (Tcl_ObjCmdProc*)command_exit, 0, 0);
 
