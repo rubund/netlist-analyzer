@@ -9,13 +9,13 @@ default:
 	make -C tclembed
 	make -C constraints
 	make -C timing
-	make netlist_analyzer
+	make netan
 
-netlist_analyzer: $(OBJECTS) input/liberty/liberty.a tclembed/tclembed.a input/verilog/verilog.a constraints/constraints.a timing/timing.a
-	g++ $(CPPFLAGS) -o netlist_analyzer $(OBJECTS) input/verilog/verilog.a input/liberty/liberty.a tclembed/tclembed.a constraints/constraints.a timing/timing.a -ltcl -lreadline
+netan: $(OBJECTS) input/liberty/liberty.a tclembed/tclembed.a input/verilog/verilog.a constraints/constraints.a timing/timing.a
+	g++ $(CPPFLAGS) -o netan $(OBJECTS) input/verilog/verilog.a input/liberty/liberty.a tclembed/tclembed.a constraints/constraints.a timing/timing.a -ltcl -lreadline
 
 clean:
-	rm -rf netlist_analyzer $(OBJECTS)
+	rm -rf netan $(OBJECTS)
 	make -C input clean
 	make -C tclembed clean
 	make -C constraints clean
