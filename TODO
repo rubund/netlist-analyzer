@@ -1,0 +1,34 @@
+x Check nets in module - if any wider than 1 - also adjust connections.
+x Clone instances if instance in instance.
+x Link pointers (two-way) between ports in childs with connections in parent.
+x Link pointers (two-way) between ports in child and nets in child
+Check in library if signal is clock, input, output, power.
+If power - ignore for now.
+x If input - do a graph search to any driver. Create two-way direct pointer. (maybe not two-way to save memory)
+x  - if multiple drivers, bail out with error.
+
+Handle inout
+Handle "assign to wire"
+Handle port names with "\blabla[0]"
+
+Liberty:
+ Handle "" around library name
+ Reset line counter when starting new file
+ Handle lines such as "current_unit : 1mA;"
+ Handle lines such as "define(min_delay_flag, timing, boolean);"
+ Handle:
+       pin("BLABLAPIN_1V0") {
+              related_power_pin     : DVDD_0V9;
+              related_ground_pin    : AVSS;
+              direction : output ;
+ Handle pin names with index  PIN[4]
+
+
+Later:
+ For every cell: Traverse graph to any FF driver from every input. Record path.
+
+
+New idea:
+ Setup a client-server system:
+  The server accepts incoming requests on the design. It keeps the design in memory.
+  The client has a GUI which ( web GUI ? ) where one can click to get input / output / all-fanin etc. This sends a request to server which immmediately responds with content from RAM.
