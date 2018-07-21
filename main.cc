@@ -45,7 +45,7 @@ int main(int argc, char **argv)
     //liberty_parser_yydebug = 1;
     //verilog_parser_yydebug = 1;
     int s;
-    std::string script_file;
+    std::string script_file = "";
 
     while ((s = getopt(argc, argv, "f:")) != -1) {
         switch(s) {
@@ -58,7 +58,8 @@ int main(int argc, char **argv)
                 break;
         }
     }
-    std::cout << "Script file is: " << script_file << std::endl;
+    if (script_file != "")
+        std::cout << "Script file is: " << script_file << std::endl;
 
     liberty_parser_mine = NULL;
     verilog_parser_mine = NULL;
