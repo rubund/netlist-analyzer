@@ -25,6 +25,8 @@ clean:
 
 install: netan
 	install netan $(PREFIX)/bin/netan
+	ln -sf netan $(PREFIX)/bin/netlist-analyzer
 
 uninstall:
 	rm -f $(PREFIX)/bin/netan
+	rm -f $(PREFIX)/bin/netlist-analyzer
