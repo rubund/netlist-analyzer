@@ -1,3 +1,4 @@
+PREFIX ?= /usr/local
 
 LDFLAGS := $(LDFLAGS) -ltcl -lreadline
 CPPFLAGS := -g
@@ -21,3 +22,9 @@ clean:
 	make -C constraints clean
 	make -C timing clean
 	rm -f dependencies
+
+install: netan
+	install netan $(PREFIX)/bin/netan
+
+uninstall:
+	rm -f $(PREFIX)/bin/netan
