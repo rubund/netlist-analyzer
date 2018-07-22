@@ -24,9 +24,10 @@ clean:
 	rm -f dependencies
 
 install: netan
-	install netan $(PREFIX)/bin/netan
-	ln -sf netan $(PREFIX)/bin/netlist-analyzer
+	mkdir -p $(DESTDIR)$(PREFIX)/bin
+	install netan $(DESTDIR)$(PREFIX)/bin/netan
+	ln -sf netan $(DESTDIR)$(PREFIX)/bin/netlist-analyzer
 
 uninstall:
-	rm -f $(PREFIX)/bin/netan
-	rm -f $(PREFIX)/bin/netlist-analyzer
+	rm -f $(DESTDIR)$(PREFIX)/bin/netan
+	rm -f $(DESTDIR)$(PREFIX)/bin/netlist-analyzer
