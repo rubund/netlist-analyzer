@@ -1,4 +1,4 @@
-CPPFLAGS := -g
+CXXFLAGS ?= -g
 
 OBJECTS := constraints.o constraint_clock.o
 

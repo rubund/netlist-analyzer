@@ -1,4 +1,4 @@
-CPPFLAGS := -g
+CXXFLAGS ?= -g
 
 default: timing.a
 

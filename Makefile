@@ -1,7 +1,7 @@
 PREFIX ?= /usr/local
 
 LDFLAGS := $(LDFLAGS) -ltcl -lreadline
-CPPFLAGS := -g
+CXXFLAGS ?= -g
 
 OBJECTS := main.o program_state.o
 
@@ -13,7 +13,7 @@ default:
 	make netan
 
 netan: $(OBJECTS) input/liberty/liberty.a tclembed/tclembed.a input/verilog/verilog.a constraints/constraints.a timing/timing.a
-	g++ $(CPPFLAGS) -o netan $(OBJECTS) input/verilog/verilog.a input/liberty/liberty.a tclembed/tclembed.a constraints/constraints.a timing/timing.a -ltcl -lreadline
+	g++ $(CPPFLAGS) $(CXXFLAGS) -o netan $(OBJECTS) input/verilog/verilog.a input/liberty/liberty.a tclembed/tclembed.a constraints/constraints.a timing/timing.a -ltcl -lreadline
 
 clean:
 	rm -rf netan $(OBJECTS)
