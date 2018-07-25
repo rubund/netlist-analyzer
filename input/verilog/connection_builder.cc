@@ -48,6 +48,10 @@ void ConnectionBuilder::cleanup()
     from.clear();
     to.clear();
     constants.clear();
+    for(int i=0; i<strings_to_cleanup.size(); i++) {
+        delete strings_to_cleanup[i];
+    }
+    strings_to_cleanup.clear();
 }
 
 void ConnectionBuilder::generate_connections()
@@ -96,6 +100,7 @@ void ConnectionBuilder::add_from(std::string *n)
     //    std::cout << "Adding complex connection: " << (*this->to_name) << " " << *n << std::endl;
     //else
     //    std::cout << "Adding complex connection: " << *n << std::endl;
+    this->strings_to_cleanup.push_back(n);
     this->strings.push_back(n);    
     this->from.push_back(-1);
     this->to.push_back(-1);

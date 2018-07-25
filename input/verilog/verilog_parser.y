@@ -142,7 +142,7 @@ connection_or_connections_from_name:
     | connections_from_name
 
 connections_from_name:
-    T_LEFTCURLY {connbuilder.init(); connbuilder.set_to_name(tmp_name);} connections_from_name_int {connbuilder.generate_connections(); for(int i=0;i<connbuilder.connections.size();i++) current_verilog->add_connection_to_last(connbuilder.connections[i]); delete verilog_parser_yylval.string; current_verilog->set_end_connection(); connbuilder.cleanup();} T_RIGHTCURLY
+    T_LEFTCURLY {connbuilder.init(); connbuilder.set_to_name(tmp_name);} connections_from_name_int {connbuilder.generate_connections(); for(int i=0;i<connbuilder.connections.size();i++) current_verilog->add_connection_to_last(connbuilder.connections[i]); delete tmp_name; current_verilog->set_end_connection(); connbuilder.cleanup();} T_RIGHTCURLY
 
 connections_from_name_int:
     connections_from_name_int T_COMMA connection_from_name_opt | connection_from_name_opt

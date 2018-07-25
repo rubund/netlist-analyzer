@@ -50,6 +50,7 @@ class ConnectionBuilder {
     std::vector<int> constants;
     std::vector<int> from;
     std::vector<int> to;
+    std::vector<std::string *> strings_to_cleanup;
 };
 
 #endif
