@@ -89,7 +89,7 @@ int verilog_preprocess(char *buf, int n, FILE *filein);
 "}" {return T_RIGHTCURLY;}
 
 
-\\[a-zA-Z_$][a-zA-Z0-9_$]*\[[0-9]+\] { verilog_parser_yylval.string = new std::string(yytext); return T_STRANGE_NAME; }
+\\[a-zA-Z_$][a-zA-Z0-9_$]*\[[0-9]+\][a-zA-Z0-9_]* { verilog_parser_yylval.string = new std::string(yytext); return T_STRANGE_NAME; }
 [a-zA-Z_$][a-zA-Z0-9_$]* { verilog_parser_yylval.string = new std::string(yytext); return T_NAME; }
 
 . { return *yytext; }
