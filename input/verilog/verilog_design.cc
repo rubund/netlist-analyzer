@@ -153,6 +153,18 @@ VerilogConnection *VerilogDesign::add_connection_to_last(std::string *from, std:
 VerilogConnection *VerilogDesign::add_connection_to_last(VerilogConnection *conn)
 {
     if (last_added_module != NULL && last_added_module->last_added_instance != NULL) {
+        bool found = 0;
+        for(int i=0;i<signal_names.size();i++) {
+            if(conn->to->compare(*(this->signal_names[i])) == 0) {
+                conn->to = this->signal_names[i];
+                found = 1;
+                break;
+            }
+        }
+        if (!found) {
+            conn->to = new std::string(*conn->to);
+            signal_names.push_back(conn->to);
+        }
         VerilogConnection *p = last_added_module->last_added_instance->add_connection(conn);
         last_range_element = (RangeType*)p;
         return p;
