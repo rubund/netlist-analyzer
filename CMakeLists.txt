@@ -32,6 +32,7 @@ ADD_CUSTOM_COMMAND(
   OUTPUT ${CMAKE_BINARY_DIR}/input/verilog/verilog_parser.tab.cc
          ${CMAKE_BINARY_DIR}/input/verilog/verilog_parser.tab.h
   DEPENDS ${CMAKE_BINARY_DIR}/input/verilog
+          ${CMAKE_SOURCE_DIR}/input/verilog/verilog_parser.y
   COMMAND ${BISON_EXECUTABLE} -o ${CMAKE_BINARY_DIR}/input/verilog/verilog_parser.tab.cc
                               --defines=${CMAKE_BINARY_DIR}/input/verilog/verilog_parser.tab.h
        ${CMAKE_SOURCE_DIR}/input/verilog/verilog_parser.y
@@ -41,6 +42,7 @@ ADD_CUSTOM_COMMAND(
 ADD_CUSTOM_COMMAND(
   OUTPUT ${CMAKE_BINARY_DIR}/input/verilog/lex.verilog_parser_yy.cc
   DEPENDS ${CMAKE_BINARY_DIR}/input/verilog/verilog_parser.tab.h
+          ${CMAKE_SOURCE_DIR}/input/verilog/verilog_parser.l
   COMMAND ${FLEX_EXECUTABLE} --outfile=${CMAKE_BINARY_DIR}/input/verilog/lex.verilog_parser_yy.cc
        ${CMAKE_SOURCE_DIR}/input/verilog/verilog_parser.l
   COMMENT "Running flex to make verilog lexer"
@@ -50,6 +52,7 @@ ADD_CUSTOM_COMMAND(
   OUTPUT ${CMAKE_BINARY_DIR}/input/liberty/liberty_parser.tab.cc
          ${CMAKE_BINARY_DIR}/input/liberty/liberty_parser.tab.h
   DEPENDS ${CMAKE_BINARY_DIR}/input/liberty
+          ${CMAKE_SOURCE_DIR}/input/liberty/liberty_parser.y
   COMMAND ${BISON_EXECUTABLE} -o ${CMAKE_BINARY_DIR}/input/liberty/liberty_parser.tab.cc
                               --defines=${CMAKE_BINARY_DIR}/input/liberty/liberty_parser.tab.h
        ${CMAKE_SOURCE_DIR}/input/liberty/liberty_parser.y
@@ -59,6 +62,7 @@ ADD_CUSTOM_COMMAND(
 ADD_CUSTOM_COMMAND(
   OUTPUT ${CMAKE_BINARY_DIR}/input/liberty/lex.liberty_parser_yy.cc
   DEPENDS ${CMAKE_BINARY_DIR}/input/liberty/liberty_parser.tab.h
+          ${CMAKE_SOURCE_DIR}/input/liberty/liberty_parser.l
   COMMAND ${FLEX_EXECUTABLE} --outfile=${CMAKE_BINARY_DIR}/input/liberty/lex.liberty_parser_yy.cc
        ${CMAKE_SOURCE_DIR}/input/liberty/liberty_parser.l
   COMMENT "Running flex to make liberty lexer"
