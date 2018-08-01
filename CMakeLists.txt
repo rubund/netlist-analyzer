@@ -65,8 +65,13 @@ ADD_CUSTOM_COMMAND(
   COMMENT "Running flex to make liberty lexer"
 )
 
+add_library(main_dependencies STATIC timing/timing_path.cc timing/timing_node.cc input/verilog/verilog_connection.cc input/verilog/verilog_net.cc input/verilog/verilog_instance.cc input/verilog/verilog_design.cc input/verilog/verilog_assignment.cc input/verilog/verilog_module.cc input/verilog/verilog_preprocess.cc input/verilog/connection_builder.cc input/liberty/liberty_cell.cc input/liberty/lutable.cc input/liberty/liberty.cc input/liberty/liberty_pin.cc input/liberty/lutable_numbers.cc constraints/constraint_clock.cc constraints/constraints.cc program_state.cc ${CMAKE_BINARY_DIR}/.bisondep/input/verilog/verilog_parser.tab.cc ${CMAKE_BINARY_DIR}/.bisondep/input/liberty/liberty_parser.tab.cc ${CMAKE_BINARY_DIR}/.bisondep/input/liberty/lex.liberty_parser_yy.cc ${CMAKE_BINARY_DIR}/.bisondep/input/verilog/lex.verilog_parser_yy.cc)
 
-add_executable(netan timing/timing_path.cc timing/timing_node.cc input/verilog/verilog_connection.cc input/verilog/verilog_net.cc input/verilog/verilog_instance.cc input/verilog/verilog_design.cc input/verilog/verilog_assignment.cc input/verilog/verilog_module.cc input/verilog/verilog_preprocess.cc input/verilog/connection_builder.cc input/liberty/liberty_cell.cc input/liberty/lutable.cc input/liberty/liberty.cc input/liberty/liberty_pin.cc input/liberty/lutable_numbers.cc tclembed/interpreter.cc constraints/constraint_clock.cc constraints/constraints.cc program_state.cc main.cc ${CMAKE_BINARY_DIR}/.bisondep/input/verilog/verilog_parser.tab.cc ${CMAKE_BINARY_DIR}/.bisondep/input/liberty/liberty_parser.tab.cc ${CMAKE_BINARY_DIR}/.bisondep/input/liberty/lex.liberty_parser_yy.cc ${CMAKE_BINARY_DIR}/.bisondep/input/verilog/lex.verilog_parser_yy.cc)
+add_executable(netan tclembed/interpreter.cc main.cc)
 
 target_link_libraries(netan ${TCL_LIBRARY})
 target_link_libraries(netan ${Readline_LIBRARY})
+target_link_libraries(netan main_dependencies)
+
+
+add_subdirectory(tests)
