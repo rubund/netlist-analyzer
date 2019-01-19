@@ -47,7 +47,6 @@ Pushing **Ctrl-R** enables searching through all old history (also from previous
 ```
 netlist_analyzer>
 (reverse-i-search)`read_v': read_verilog .zshrc
-
 ```
 This is accomplished via the readline library.
 
@@ -55,4 +54,24 @@ You can also source a file with commands:
 ```
 netlist_analyzer> source run.tcl
 ...
+```
+
+License
+-------
+
+This program is GPL-3+ licensed:
+
+```
+   This program is free software: you can redistribute it and/or modify
+   it under the terms of the GNU General Public License as published by
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
+ 
+   This program is distributed in the hope that it will be useful,
+   but WITHOUT ANY WARRANTY; without even the implied warranty of
+   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+   GNU General Public License for more details.
+ 
+   You should have received a copy of the GNU General Public License
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ```
