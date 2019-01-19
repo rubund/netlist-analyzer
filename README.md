@@ -11,15 +11,15 @@ Example
 -------
 
 ```
-netlist\_analyzer> read_verilog netlist.v
+netlist_analyzer> read_verilog netlist.v
 Done
-netlist\_analyzer> read_liberty mylibrary.lib
+netlist_analyzer> read_liberty mylibrary.lib
 Done
-netlist\_analyzer> set_design_top MyTop
+netlist_analyzer> set_design_top MyTop
 The module MyTop has been set as top module
-netlist\_analyzer> link_design
+netlist_analyzer> link_design
 Successfully linked design!
-netlist\_analyzer> help
+netlist_analyzer> help
 
 Available commands:
   all_registers
@@ -32,20 +32,20 @@ Available commands:
   help
   link_design
   list_libs
-  report\_timing
-  read\_verilog
-  read\_liberty
-  report\_clock
+  report_timing
+  read_verilog
+  read_liberty
+  report_clock
   restart
-  set\_design\_top
+  set_design_top
   source
-  traverse\_input
+  traverse_input
   quit
 ```
 
 Pushing **Ctrl-R** enables searching through all old histories (also from previous sessions):
 ```
-netlist\_analyzer>
+netlist_analyzer>
 (reverse-i-search)`read_v': read_verilog .zshrc
 
 ```
@@ -53,6 +53,6 @@ This is accomplished via the readline library.
 
 You can also source a file with commands:
 ```
-netlist\_analyzer> source run.tcl
+netlist_analyzer> source run.tcl
 ...
 ```
