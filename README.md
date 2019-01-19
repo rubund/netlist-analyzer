@@ -43,7 +43,7 @@ Available commands:
   quit
 ```
 
-Pushing **Ctrl-R** enables searching through all old histories (also from previous sessions):
+Pushing **Ctrl-R** enables searching through all old history (also from previous sessions):
 ```
 netlist_analyzer>
 (reverse-i-search)`read_v': read_verilog .zshrc
