@@ -65,6 +65,8 @@ int verilog_error_reading = 0;
 %token T_RIGHTCURLY
 %token T_ASSIGN
 %token T_EQUAL
+%token T_SUPPLY0
+%token T_SUPPLY1
 %token<string> T_CONSTANT
 %left T_PLUS T_MINUS
 %left T_MULTIPLY T_DIVIDE
@@ -122,6 +124,7 @@ module_body_line:
       instantiation
     | inputoutputline
     | wireregline
+    | supplyline
     | T_ASSIGN both_names {tmp_range_stop = 0; get_tmp_range=1;} range_opt {index_to = tmp_range_stop; get_tmp_range=0;} T_EQUAL both_names {tmp_range_stop=0; get_tmp_range=1;} range_opt {index_from = tmp_range_stop; get_tmp_range=0;} T_SEMICOLON { current_verilog->add_assignment_to_last($7,index_from,$2,index_to);}
     
 
@@ -241,6 +244,11 @@ signal:
 wireregline:
     logic signals T_SEMICOLON
 
+supplyline:
+    either_supply T_NAME T_SEMICOLON
+
+either_supply:
+    T_SUPPLY0 | T_SUPPLY1
 
 %%
 

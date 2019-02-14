@@ -81,6 +81,8 @@ int verilog_preprocess(char *buf, int n, FILE *filein);
 "reg" {return T_REG;}
 "wire" {return T_WIRE;}
 "assign" {return T_ASSIGN;}
+"supply0" {return T_SUPPLY0;}
+"supply1" {return T_SUPPLY1;}
 "=" {return T_EQUAL;}
 ":" {return T_COLON;}
 "[" {return T_LEFTBRACKET;}
